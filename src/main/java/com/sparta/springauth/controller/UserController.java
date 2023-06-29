@@ -29,19 +29,10 @@ public class UserController {
     public String signupPage() {
         return "signup";
     }
+
     @PostMapping("/user/signup")
-    public String signup(@ModelAttribute SignupRequestDto requestDto){
+    public String signup(@ModelAttribute SignupRequestDto requestDto) {
         userService.signup(requestDto);
         return "redirect:/api/user/login-page";
-    }
-    @PostMapping("/user/login")
-    public String login(@ModelAttribute LoginRequestDto requestDto, HttpServletResponse res){
-        try {
-            userService.login(requestDto, res);
-        } catch (Exception e) {
-            return "redirect:/api/user/login-page?error";
-        }
-
-        return "redirect:/";
     }
 }
